@@ -1,0 +1,11 @@
+version: '2.1'
+services:
+  sa-api:
+    build: .
+    environment:
+      PORT: '9001'
+      SHOW_URLS: 'true'
+      AUTH_URL: 'host.docker.internal'
+      AUTH_PORT: '3000'
+    ports:
+      - '9001:9001'

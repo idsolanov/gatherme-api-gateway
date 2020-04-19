@@ -17,21 +17,56 @@ import {
 
 import likeResolvers from './users-ms/resolvers';
 import userResolvers from './users-ms/userResolvers';
+/*Suggestion*/
+import {
+	sugg_userTypeDef,
+	sugg_likeTypeDef,
+	sugg_categoryTypeDef,
+	sugg_suggestionTypeDef,
+	sugg_userQueries,
+	sugg_likeQueries,
+	sugg_categoryQueries,
+	sugg_suggestionQueries,
+	sugg_userMutations,
+	sugg_likeMutations,
+	sugg_categoryMutations,
+	sugg_suggestionMutations
+} from './suggestion-ms/typeDefs'
+
+import {
+	sugg_userResolvers,
+	sugg_likeResolvers,
+	sugg_categoryResolvers,
+	sugg_suggestionResolvers
+} from './suggestion-ms/resolvers'
+
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		likeTypeDef,
-		userTypeDef
+		userTypeDef,
+		sugg_userTypeDef,
+		sugg_likeTypeDef,
+		sugg_categoryTypeDef,
+		sugg_suggestionTypeDef
 	],
 	[
 		likeQueries,
-		userQueries
+		userQueries,
+		sugg_userQueries,
+		sugg_likeQueries,
+		sugg_categoryQueries,
+		sugg_suggestionQueries
 	],
 	[
 		likeMutations,
-		userMutations
+		userMutations,
+		sugg_userMutations,
+		sugg_likeMutations,
+		sugg_categoryMutations,
+		sugg_suggestionMutations
 	]
 );
 
@@ -41,6 +76,10 @@ export default makeExecutableSchema({
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		likeResolvers,
-		userResolvers
+		userResolvers,
+		sugg_userResolvers,
+		sugg_likeResolvers,
+		sugg_categoryResolvers,
+		sugg_suggestionResolvers
 	)
 });

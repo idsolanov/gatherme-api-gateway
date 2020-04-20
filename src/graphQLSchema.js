@@ -3,11 +3,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import merge from 'lodash.merge';
 import { mergeSchemas } from './utilities';
 
-import {
-	likeMutations,
-	likeQueries,
-	likeTypeDef
-} from './users-ms/likeTypeDefs';
+
 
 import {
 	userMutations,
@@ -15,22 +11,18 @@ import {
 	userTypeDef
 } from './users-ms/userTypeDefs';
 
-import likeResolvers from './users-ms/resolvers';
 import userResolvers from './users-ms/userResolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		likeTypeDef,
 		userTypeDef
 	],
 	[
-		likeQueries,
 		userQueries
 	],
 	[
-		likeMutations,
 		userMutations
 	]
 );
@@ -40,7 +32,6 @@ export default makeExecutableSchema({
 	typeDefs: mergedTypeDefs,
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
-		likeResolvers,
 		userResolvers
 	)
 });

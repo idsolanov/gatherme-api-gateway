@@ -42,12 +42,14 @@ import {
 } from './suggestion-ms/typeDefs'
 
 import {
-	sugg_userResolvers,
-	sugg_likeResolvers,
-	sugg_categoryResolvers,
-	sugg_suggestionResolvers
-} from './suggestion-ms/resolvers'
+	requestQueries,
+	requestMutations,
+	requestTypeDef
+} from './requests-ms/requestTypeDefs';
 
+
+import userResolvers from './users-ms/userResolvers';
+import requestResolvers from './requests-ms/requestResolvers';
 
 
 import {activityTypeDef,
@@ -62,6 +64,7 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		userTypeDef,
+		requestTypeDef,
 		authTypeDefs,
 		comuTypeDefs,
 		activityTypeDef,
@@ -72,6 +75,7 @@ const mergedTypeDefs = mergeSchemas(
 	],
 	[
 		userQueries,
+		requestQueries,
 		comuQueries,
 		activityQueries,
 		sugg_userQueries,
@@ -81,6 +85,7 @@ const mergedTypeDefs = mergeSchemas(
 	],
 	[
 		userMutations,
+		requestMutations,
 		authMutations,
 		comuMutations,
 		activityMutations,
@@ -97,6 +102,7 @@ export default makeExecutableSchema({
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		userResolvers,
+		requestResolvers,
 		authResolvers,
 		comuResolvers,
 		activityResolvers,

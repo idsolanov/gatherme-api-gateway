@@ -18,20 +18,31 @@ import {
 import likeResolvers from './users-ms/resolvers';
 import userResolvers from './users-ms/userResolvers';
 
+
+import {activityTypeDef,
+		activityMutations,
+		activityQueries
+	} from './activities-ms/activityTypeDef'
+
+import activityResolvers from './activities-ms/activityResolvers'
+
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		likeTypeDef,
-		userTypeDef
+		userTypeDef,
+		activityTypeDef
 	],
 	[
 		likeQueries,
-		userQueries
+		userQueries,
+		activityQueries
 	],
 	[
 		likeMutations,
-		userMutations
+		userMutations,
+		activityMutations
 	]
 );
 
@@ -41,6 +52,7 @@ export default makeExecutableSchema({
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		likeResolvers,
-		userResolvers
+		userResolvers,
+		activityResolvers
 	)
 });

@@ -1,101 +1,103 @@
 export const activityTypeDef = `
 type Activity {
-    id int!
-    informacion String!
-    nombre String!
-    descripcion String!
-    lista_miembros [String]
-    tags_especificos [String]
-    notas_adicionales [String]
-    categoria String!
-    boolean recurrente String!
-    lugar String!
-    hora String!
-    fecha String!
-    banner String!
-    administrador String!
+    id: Int
+    informacion:  String!
+    nombre:  String!
+    descripcion:  String!
+    lista_miembros : [String]
+    tags_especificos : [String]
+    notas_adicionales : [String]
+    categoria:  String!
+    reccurrente: Boolean!
+    lugar:  String!
+    hora:  String!
+    fecha:  String!
+    banner:  String!
+    comments: [Comment]
+    administrador:  String!
 }
 type Comment {
-    id int!
-    userId String! 
-    content String!
-    date String!
+    id: Int!
+    userId:  String! 
+    content:  String!
+    date:  String!
+}
+type Response {
+    Status: Int
 }
 input ActivityInput {
-    informacion String!
-    nombre String!
-    descripcion String!
-    lista_miembros [String]
-    tags_especificos [String]
-    notas_adicionales [String]
-    categoria String!
-    boolean recurrente String!
-    lugar String!
-    hora String!
-    fecha String!
-    banner String!
-    administrador String!
+    informacion:  String!
+    nombre:  String!
+    descripcion:  String!
+    lista_miembros : [String]
+    tags_especificos : [String]
+    notas_adicionales : [String]
+    categoria:  String!
+    reccurrente: Boolean!
+    lugar:  String!
+    hora:  String!
+    fecha:  String!
+    banner:  String!
+    administrador:  String!
 }
 
 input ActivityInputUpdate {
-    id = int!
-    informacion String!
-    nombre String!
-    descripcion String!
-    lista_miembros [String]
-    tags_especificos [String]
-    notas_adicionales [String]
-    categoria String!
-    boolean recurrente String!
-    lugar String!
-    hora String!
-    fecha String!
-    banner String!
-    administrador String!
+    informacion:  String!
+    nombre:  String!
+    descripcion:  String!
+    lista_miembros : [String]
+    tags_especificos : [String]
+    notas_adicionales : [String]
+    categoria:  String!
+    reccurrente: Boolean!
+    lugar:  String!
+    hora:  String!
+    fecha:  String!
+    banner:  String!
 }
 
 input AdministratorInputUpdate {
-    id = int!
-    newAdministrator = String!
-    informacion String!
-    nombre String!
-    descripcion String!
-    lista_miembros [String]
-    tags_especificos [String]
-    notas_adicionales [String]
-    categoria String!
-    boolean recurrente String!
-    lugar String!
-    hora String!
-    fecha String!
-    banner String!
-    administrador String!
+    id:  Int!
+    newAdministrator:  String!
+    informacion:  String!
+    nombre:  String!
+    descripcion:  String!
+    lista_miembros : [String]
+    tags_especificos : [String]
+    notas_adicionales : [String]
+    categoria:  String!
+    reccurrente: Boolean!
+    lugar:  String!
+    hora:  String!
+    fecha:  String!
+    banner:  String!
+    administrador:  String!
 }
 input ActivityInputDelete {
-    id: int!
+    id:  Int!
 }
 
 input CommentInput {
-    id = int!
-    userId String! 
-    content String!
-    date String!
+    userId:  String! 
+    content:  String!
+    date:  String!
 }
+
 
 `;
 
-export const ActivityQueries = `
-    getActivityByID(id: int!): Activity!
-    getAllActivities(): [Activity]
+export const activityQueries = `
+    getActivityByID(id: Int!): Activity!
+    getAllActivities: [Activity]
 
 `
 ;
 
-export const ActivityMutations = `
-    createActivity(activity: ActivityInput): Activity
-    updateActivity(activity:ActivityInputUpdate): Activity
+export const activityMutations = `
+    createActivity(activity: ActivityInput): Response
+    updateActivity(id: Int, activity: ActivityInput): Response
     updateAdministrator(activity: AdministratorInputUpdate): Activity
-    commentActivity(comment: CommentInput):  Comment
-    deleteActivity(id: ActivityInputDelete): Activity
+    commentActivity(id: Int, comment: CommentInput):  Response
+    deleteActivity(id: Int): Response
 
 `

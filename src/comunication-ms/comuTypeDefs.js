@@ -1,10 +1,10 @@
-export const comuTyDefs=`
+export const comuTypeDefs=`
 
 type chat {
     _id: String!
     nickName1: String!
     nickName2: String!
-    creationDate: Date!
+    creationDate: String!
 }
 
 input chatInput{
@@ -16,7 +16,7 @@ type responseChat{
     _id: String
     nickName1: String
     nickName2: String
-    creationDate: Date
+    creationDate: String
     message:String
 }
 type responseChats{
@@ -29,7 +29,7 @@ type message{
     owner: String!
     message: String!
     chatId: String!
-    Date: Date!
+    Date: String!
 }
 
 input messageInput{
@@ -42,14 +42,14 @@ type responseMessage{
     owner: String
     message: String
     chatId: String
-    Date: Date
+    Date: String
     message: String
 }
 type responseMessages{
     messages: [message]
     message : String
 }
-`
+`;
 export const comuQueries=`
     getChatbyId(id:String!): responseChat!
     getChatsbynickName(nickName: String!): responseChats!
@@ -57,13 +57,13 @@ export const comuQueries=`
     getMessagebyId(id:String!): responseMessage!
     getMessagesbyChatId(chatId:String!): responseMessages!
 
-`
+`;
 
 export const comuMutations=`
     createChat(chat: chatInput!) : responseChat!
     deleteChat(id : String!): responseChat!
 
     createMessage(message: messageInput!): responseMessage!
-    deleteMesage(id: String!): responseMessage!
+    deleteMessage(id: String!): responseMessage!
 
-`
+`;

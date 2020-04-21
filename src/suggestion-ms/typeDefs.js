@@ -2,138 +2,141 @@
 /*==============================*/
 /*           Types              */
 /*==============================*/
-export const userTypeDef = `
-type User {
+export const sugg_userTypeDef = `
+input sugg_UserInput{
+    id: String!
+    name: String!
+}
+type sugg_User {
     id: String!
     name: String
 }
-type UserInfo {
-    user: User!
-    likes: [Like]
-    gathers: [User]
-    userReports: [User]
-    suggestion: [Suggestion]
+type sugg_UserInfo {
+    user: sugg_User!
+    likes: [sugg_Like]
+    gathers: [sugg_User]
+    userReports: [sugg_User]
+    suggestion: [sugg_Suggestion]
 }
-type responseUser{
+type sugg_responseUser{
     ans: String
     error: String
 }
-input UserInput{
-    id: String!
-    name: String!
-}
-input UserSingle{
+input sugg_UserSingle{
     id: String!
 }
-input UserReport{
-    user: User!
-    userReports: [User!]
+input sugg_UserReport{
+    user: sugg_UserInput!
+    userReports: [sugg_UserInput!]
 }
-input UserGathers{
-    user: User!
-    gathers: [User!]
+input sugg_UserGathers{
+    user: sugg_UserInput!
+    gathers: [sugg_UserInput!]
 }
-input UserLike{
-    user: User!
-    likes: [Like!]
+input sugg_UserLike{
+    user: sugg_UserInput!
+    likes: [sugg_LikeInput!]
 }
 `
+;
 
-    ;
-
-export const likeTypeDef = `
-type Like {
+export const sugg_likeTypeDef = `
+type sugg_Like {
     name: String!
 }
-type LikeInfo {
-    like: Like!
-    category: Category!
+type sugg_LikeInfo {
+    like: sugg_Like!
+    category: sugg_Category!
 }
-type responseLike{
+type sugg_responseLike{
     ans: String
     error: String
 }
-input LikeInput{
+input sugg_LikeInput{
     name: String!
 }
-input LikeRelationship{
-    like: Like!
-    category: Category!
+input sugg_LikeRelationship{
+    like: sugg_LikeInput!
+    category: sugg_CategoryInput!
 }
 `
-    ;
-export const categoryTypeDef = `
-type Category {
+;
+export const sugg_categoryTypeDef = `
+type sugg_Category {
     name: String!
 }
-type responseCategory{
+type sugg_responseCategory{
     ans: String
     error: String
 }
-input CategoryInput{
+input sugg_CategoryInput{
     name: String!
 }
 `
-    ;
+;
 
-export const suggestionTypeDef = `
-type Suggestion {
+export const sugg_suggestionTypeDef = `
+type sugg_Suggestion {
     id: String!
     isActive: Boolean
 }
-type SuggestionInfo {
-    suggestion: Suggestion!
-    suggestedUser: User!
+type sugg_SuggestionInfo {
+    suggestion: sugg_Suggestion!
+    suggestedUser: sugg_User!
 }
-type responseSuggestion{
+type sugg_responseSuggestion{
     ans: String
     error: String
 }
-input SuggestionInput{
+input sugg_SuggestionInput{
     id: String!
 }
 `
-    ;
+;
 
 
 /*==============================*/
 /*           Queries            */
 /*==============================*/
-export const userQueries = `
-    users(): [User!]
+export const sugg_userQueries = `
+    users: [sugg_User!]
 `;
-export const likeQueries = `
-    likes(): [Like!]
-    filterByLike(like: LikeInput): [User!]
+export const sugg_likeQueries = `
+    likes: [sugg_Like!]
+    filterByLike(name: String!): [sugg_User!]
 `;
-export const categoryQueries = `
-    categories(): [Category!]
-    filterByCategory(category: CategoryInput): [User!]
+export const sugg_categoryQueries = `
+    categories: [sugg_Category!]
+    filterByCategory(name: String!): [sugg_User!]
 `;
-export const suggestionQueries = `
-    suggestions(): [Suggestion!]
+export const sugg_suggestionQueries = `
+    suggestions: [sugg_Suggestion!]
 `;
 
 /*==============================*/
 /*           Mutations          */
 /*==============================*/
-export const userMutations = `
-    newUser(user: UserInput): responseUser
-    newReport(user: UserReport): responseUser
-    newGather(user: UserGathers): responseUser
-    newLike(user: UserLike): responseUser
-`;
+export const sugg_userMutations = `
+    newUser(user: sugg_UserInput): sugg_responseUser
+    newReport(user: sugg_UserReport): sugg_responseUser
+    newGather(user: sugg_UserGathers): sugg_responseUser
+    newLike(user: sugg_UserLike): sugg_responseUser
+`
+;
 
-export const likeMutations = `
-    newLike(like: LikeInput): responseLike
-    newHave(like: LikeRelationship): responseLike
-`;
+export const sugg_likeMutations = `
+    newLike(like: sugg_LikeInput): sugg_responseLike
+    newHave(like: sugg_LikeRelationship): sugg_responseLike
+`
+;
 
-export const categoryMutations = `
-    newCategory(category: CategoryInput): responseCategory
-`;
+export const sugg_categoryMutations = `
+    newCategory(category: sugg_CategoryInput): sugg_responseCategory
+`
+;
 
-export const suggestionMutations = `
-    createSuggest(user: UserSingle): [SuggestionInfo!]
-    deactivate(suggestion: SuggestionInput): responseSuggestion
-`;
+export const sugg_suggestionMutations = `
+    createSuggest(user: sugg_UserSingle): [sugg_SuggestionInfo!]
+    deactivate(suggestion: sugg_SuggestionInput): sugg_responseSuggestion
+`
+;

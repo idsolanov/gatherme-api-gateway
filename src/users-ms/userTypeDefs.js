@@ -13,6 +13,7 @@ type User {
     communities: [String!]
     activities:[String!]
     gathers: [String!]
+    error: String
 }
 type responseDelete{
     result: String
@@ -75,7 +76,38 @@ input inputDelete {
     id: String!
 }
 
-
+input  register {
+    id: String!
+    username: String!
+    name : String!
+    password: String!
+    email: String!
+    picture: String!
+    description: String!
+    gender: String!
+    age: Int!
+    city: String!
+    likes: [String!]
+    communities: [String!]
+    activities:[String!]
+    gathers: [String!]
+}
+type reponseUser {
+    id: String
+    username: String
+    name : String
+    email: String
+    picture: String
+    description: String
+    gender: String
+    age: Int
+    city: String
+    likes: [String]
+    communities: [String]
+    activities:[String]
+    gathers: [String]
+    error: String
+}
 `
 ;
 
@@ -93,4 +125,6 @@ export const userMutations = `
     createLike(like: LikeInput!): Like!
     updateLike(like: LikeInputUpdate!): responseDelete!
     deleteLike(id: inputDelete!): responseDelete!
+
+    register(user: register!): responseUser!
 `;

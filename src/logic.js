@@ -224,3 +224,31 @@ export async function sugg_createSuggest(url,body){
 	let res = axios.post(url,body);
 	return res.data;
 }
+
+//compose methods
+export async function register(user){
+	let account={
+		email: user.email,
+		nickName: user.username,
+		password: user.password
+	}
+	let user={
+		username: user.username,
+		email: user.email,
+		name: user.name,
+		picture: user.picture,
+		description: user.description,
+		gender: user.gender,
+		age: user.age,
+		city: user.city,
+		likes: user.likes,
+		communities: user.communities,
+		gathers: user.gathers
+	}
+	let singup = await singUp(account)
+	if(singup.data.email==user.email){
+		let user = await createUser(user)
+		return user
+	}
+	
+}

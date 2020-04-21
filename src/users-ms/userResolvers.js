@@ -1,5 +1,5 @@
 import { getUserByID,getUserByUsername,updateUser, deleteUser, createUser} from '../logic';
-import { getLikeByID,updateLike, deleteLike, createLike, getLikesByCategory} from '../logic';
+import { getLikeByID,updateLike, deleteLike, createLike, getLikesByCategory,register} from '../logic';
 
 
 
@@ -23,6 +23,10 @@ const userResolvers = {
         }  
 	},
 	Mutation: {
+        register:(_,{user})=>{
+            let response= register(user)
+            return response;
+        },
 		createUser: (_, { user }) =>{
             let response = createUser(user)
             return response;

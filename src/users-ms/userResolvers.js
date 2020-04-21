@@ -1,31 +1,58 @@
-import { generalRequest} from '../utilities';
-import { getUser ,updateUser, deleteUser} from '../logic';
+import { getUserByID,getUserByUsername,updateUser, deleteUser, createUser} from '../logic';
+import { getLikeByID,updateLike, deleteLike, createLike, getLikesByCategory,register} from '../logic';
 
-
-import { url, port, } from './server';
-
-const URL = `http://172.17.0.1:3000/gatherme-users-ms`;
 
 
 const userResolvers = {
 	Query: {
 		userById: (_, { id }) =>{
-            let response = getUser(`${URL}/user-id/${id}`)
+            let response = getUserByID(`${id}`)
             return response;   
-        }
-
-      
+        },
+        userByUsername: (_, { username }) =>{
+            let response = getUserByUsername(`${username}`)
+            return response;   
+        },
+        likeById: (_, { id }) =>{
+            let response = getLikeByID(`${id}`)
+            return response;   
+        },
+        likesByCategory: (_, { category }) =>{
+            let response = getLikesByCategory(`${category}`)
+            return response;   
+        }  
 	},
 	Mutation: {
-		createUser: (_, { user }) =>
-			generalRequest(`${URL}/create-user`, 'POST', user),
+        register:(_,{user})=>{
+            let response= register(user)
+            return response;
+        },
+		createUser: (_, { user }) =>{
+            let response = createUser(user)
+            return response;
+        },
+			
 		updateUser: (_, { user }) =>{
-           let response = updateUser(`${URL}/update-user`,user)
+           let response = updateUser(user)
            return response;
         },
 			
 		deleteUser: (_, { id }) =>{
-            let response = deleteUser(`${URL}/delete-user`,id)
+            let response = deleteUser(id)
+            return response
+        },
+        createLike: (_, { like }) =>{
+            let response = createLike(like)
+            return response;
+        },
+			
+		updateLike: (_, { like }) =>{
+           let response = updateLike(like)
+           return response;
+        },
+			
+		deleteLike: (_, { id }) =>{
+            let response = deleteLike(id)
             return response
         }
 			

@@ -3,11 +3,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import merge from 'lodash.merge';
 import { mergeSchemas } from './utilities';
 
-import {
-	likeMutations,
-	likeQueries,
-	likeTypeDef
-} from './users-ms/likeTypeDefs';
+
 
 import {
 	userMutations,
@@ -26,7 +22,6 @@ import {
 	comuMutations
 }from './comunication-ms/comuTypeDefs'
 
-import likeResolvers from './users-ms/resolvers';
 import userResolvers from './users-ms/userResolvers';
 import authResolvers from './authentication-ms/authResolvers';
 import comuResolvers from './comunication-ms/comuResolvers'
@@ -66,7 +61,6 @@ import activityResolvers from './activities-ms/activityResolvers'
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		likeTypeDef,
 		userTypeDef,
 		authTypeDefs,
 		comuTypeDefs,
@@ -77,7 +71,6 @@ const mergedTypeDefs = mergeSchemas(
 		sugg_suggestionTypeDef
 	],
 	[
-		likeQueries,
 		userQueries,
 		comuQueries,
 		activityQueries,
@@ -87,7 +80,6 @@ const mergedTypeDefs = mergeSchemas(
 		sugg_suggestionQueries
 	],
 	[
-		likeMutations,
 		userMutations,
 		authMutations,
 		comuMutations,
@@ -104,7 +96,6 @@ export default makeExecutableSchema({
 	typeDefs: mergedTypeDefs,
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
-		likeResolvers,
 		userResolvers,
 		authResolvers,
 		comuResolvers,

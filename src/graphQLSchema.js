@@ -41,12 +41,21 @@ import {
 } from './suggestion-ms/resolvers'
 
 
+
+import {activityTypeDef,
+		activityMutations,
+		activityQueries
+	} from './activities-ms/activityTypeDef'
+
+import activityResolvers from './activities-ms/activityResolvers'
+
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		likeTypeDef,
 		userTypeDef,
+		activityTypeDef,
 		sugg_userTypeDef,
 		sugg_likeTypeDef,
 		sugg_categoryTypeDef,
@@ -55,6 +64,7 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		likeQueries,
 		userQueries,
+		activityQueries,
 		sugg_userQueries,
 		sugg_likeQueries,
 		sugg_categoryQueries,
@@ -63,6 +73,7 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		likeMutations,
 		userMutations,
+		activityMutations,
 		sugg_userMutations,
 		sugg_likeMutations,
 		sugg_categoryMutations,
@@ -77,6 +88,7 @@ export default makeExecutableSchema({
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		likeResolvers,
 		userResolvers,
+		activityResolvers,
 		sugg_userResolvers,
 		sugg_likeResolvers,
 		sugg_categoryResolvers,

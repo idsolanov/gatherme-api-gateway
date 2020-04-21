@@ -86,6 +86,7 @@ input CommentInput {
 
 `;
 
+
 export const activityQueries = `
     getActivityByID(id: Int!): Activity!
     getAllActivities: [Activity]

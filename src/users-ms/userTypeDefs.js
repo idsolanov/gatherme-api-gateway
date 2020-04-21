@@ -36,6 +36,7 @@ type responseUser {
     activities:[String]
     gathers: [String]
     error: String
+    token: String
 }
 
 type Like {

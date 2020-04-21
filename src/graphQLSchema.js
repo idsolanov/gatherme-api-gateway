@@ -22,10 +22,6 @@ import {
 	comuMutations
 }from './comunication-ms/comuTypeDefs'
 
-import userResolvers from './users-ms/userResolvers';
-import authResolvers from './authentication-ms/authResolvers';
-import comuResolvers from './comunication-ms/comuResolvers'
-/*Suggestion*/
 import {
 	sugg_userTypeDef,
 	sugg_likeTypeDef,
@@ -47,17 +43,23 @@ import {
 	requestTypeDef
 } from './requests-ms/requestTypeDefs';
 
-
-import userResolvers from './users-ms/userResolvers';
-import requestResolvers from './requests-ms/requestResolvers';
-
-
-import {activityTypeDef,
+import {activityTypeDef,	
 		activityMutations,
 		activityQueries
 	} from './activities-ms/activityTypeDef'
 
-import activityResolvers from './activities-ms/activityResolvers'
+import userResolvers from './users-ms/userResolvers';
+import authResolvers from './authentication-ms/authResolvers';
+import comuResolvers from './comunication-ms/comuResolvers';
+import requestResolvers from './requests-ms/requestResolvers';
+import activityResolvers from './activities-ms/activityResolvers';
+import {
+	sugg_userResolvers,
+	sugg_likeResolvers,
+	sugg_categoryResolvers,
+	sugg_suggestionResolvers
+} from './suggestion-ms/resolvers'
+
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(

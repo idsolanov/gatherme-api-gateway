@@ -246,13 +246,13 @@ export async function register(user){
 		activities: user.activities,
 		gathers: user.gathers
 	}
-	let singup = await singUp(account)
-	console.log(singup);
-	console.log(userBody);
-	console.log(user);
+	let singupResponse = await singUp(account)
+	console.log("singUp successful");
 
-	if(singup.email!= null){
+	if(singupResponse.email!= null){
 		let userResponse = await createUser(userBody)
+		console.log("Create user successful");
+		userResponse.token = singupResponse.token;
 		return userResponse
 	}
 

@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const url = "http://172.17.0.1:";
 const url_user = "3000/gatherme-users-ms";
-const auth_ms_PORT= '3001/'
+const auth_ms_PORT= '3001'
 const comu_ms_PORT= '3002/'
 
 
@@ -75,7 +75,7 @@ export async function deleteLike(body) {
 //authentication ms functions
 
 export async function singUp(account){
-	let response = await axios.post(url+auth_ms_PORT+"/singUp",account)
+	let response = await axios.post(url +auth_ms_PORT+"/singUp",account)
 	return response.data
 }
 
@@ -223,4 +223,37 @@ export async function sugg_getSuggestions(url){
 export async function sugg_createSuggest(url,body){
 	let res = axios.post(url,body);
 	return res.data;
+}
+
+//compose methods
+export async function register(user){
+	let account={
+		email: user.email,
+		nickName: user.username,
+		password: user.password
+	}
+	let userBody={
+		username: user.username,
+		email: user.email,
+		name: user.name,
+		picture: user.picture,
+		description: user.description,
+		gender: user.gender,
+		age: user.age,
+		city: user.city,
+		likes: user.likes,
+		communities: user.communities,
+		activities: user.activities,
+		gathers: user.gathers
+	}
+	let singup = await singUp(account)
+	console.log(singup);
+	console.log(userBody);
+	console.log(user);
+
+	if(singup.email!= null){
+		let userResponse = await createUser(userBody)
+		return userResponse
+	}
+
 }

@@ -20,9 +20,16 @@ import {
 	authMutations
 }from './authentication-ms/authTypeDefs'
 
+import {
+	comuTypeDefs,
+	comuQueries,
+	comuMutations
+}from './comunication-ms/comuTypeDefs'
+
 import likeResolvers from './users-ms/resolvers';
 import userResolvers from './users-ms/userResolvers';
-import authResolvers from './authentication-ms/authResolvers'
+import authResolvers from './authentication-ms/authResolvers';
+import comuResolvers from './comunication-ms/comuResolvers'
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -30,16 +37,19 @@ const mergedTypeDefs = mergeSchemas(
 		'scalar JSON',
 		likeTypeDef,
 		userTypeDef,
-		authTypeDefs
+		authTypeDefs,
+		comuTypeDefs
 	],
 	[
 		likeQueries,
-		userQueries
+		userQueries,
+		comuQueries
 	],
 	[
 		likeMutations,
 		userMutations,
-		authMutations
+		authMutations,
+		comuMutations
 	]
 );
 
@@ -50,6 +60,7 @@ export default makeExecutableSchema({
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		likeResolvers,
 		userResolvers,
-		authResolvers
+		authResolvers,
+		comuResolvers
 	)
 });

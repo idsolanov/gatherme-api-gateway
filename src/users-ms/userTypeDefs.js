@@ -21,6 +21,23 @@ type responseDelete{
 
 }
 
+type responseUser {
+    id: String
+    username: String
+    name : String
+    email: String
+    picture: String
+    description: String
+    gender: String
+    age: Int
+    city: String
+    likes: [String]
+    communities: [String]
+    activities:[String]
+    gathers: [String]
+    error: String
+}
+
 type Like {
     id: String!
     category: String!
@@ -77,7 +94,6 @@ input inputDelete {
 }
 
 input  register {
-    id: String!
     username: String!
     name : String!
     password: String!
@@ -92,22 +108,7 @@ input  register {
     activities:[String!]
     gathers: [String!]
 }
-type reponseUser {
-    id: String
-    username: String
-    name : String
-    email: String
-    picture: String
-    description: String
-    gender: String
-    age: Int
-    city: String
-    likes: [String]
-    communities: [String]
-    activities:[String]
-    gathers: [String]
-    error: String
-}
+
 `
 ;
 

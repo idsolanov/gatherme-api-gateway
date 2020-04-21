@@ -30,6 +30,37 @@ import likeResolvers from './users-ms/resolvers';
 import userResolvers from './users-ms/userResolvers';
 import authResolvers from './authentication-ms/authResolvers';
 import comuResolvers from './comunication-ms/comuResolvers'
+/*Suggestion*/
+import {
+	sugg_userTypeDef,
+	sugg_likeTypeDef,
+	sugg_categoryTypeDef,
+	sugg_suggestionTypeDef,
+	sugg_userQueries,
+	sugg_likeQueries,
+	sugg_categoryQueries,
+	sugg_suggestionQueries,
+	sugg_userMutations,
+	sugg_likeMutations,
+	sugg_categoryMutations,
+	sugg_suggestionMutations
+} from './suggestion-ms/typeDefs'
+
+import {
+	sugg_userResolvers,
+	sugg_likeResolvers,
+	sugg_categoryResolvers,
+	sugg_suggestionResolvers
+} from './suggestion-ms/resolvers'
+
+
+
+import {activityTypeDef,
+		activityMutations,
+		activityQueries
+	} from './activities-ms/activityTypeDef'
+
+import activityResolvers from './activities-ms/activityResolvers'
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -38,18 +69,33 @@ const mergedTypeDefs = mergeSchemas(
 		likeTypeDef,
 		userTypeDef,
 		authTypeDefs,
-		comuTypeDefs
+		comuTypeDefs,
+		activityTypeDef,
+		sugg_userTypeDef,
+		sugg_likeTypeDef,
+		sugg_categoryTypeDef,
+		sugg_suggestionTypeDef
 	],
 	[
 		likeQueries,
 		userQueries,
-		comuQueries
+		comuQueries,
+		activityQueries,
+		sugg_userQueries,
+		sugg_likeQueries,
+		sugg_categoryQueries,
+		sugg_suggestionQueries
 	],
 	[
 		likeMutations,
 		userMutations,
 		authMutations,
-		comuMutations
+		comuMutations,
+		activityMutations,
+		sugg_userMutations,
+		sugg_likeMutations,
+		sugg_categoryMutations,
+		sugg_suggestionMutations
 	]
 );
 
@@ -61,6 +107,11 @@ export default makeExecutableSchema({
 		likeResolvers,
 		userResolvers,
 		authResolvers,
-		comuResolvers
+		comuResolvers,
+		activityResolvers,
+		sugg_userResolvers,
+		sugg_likeResolvers,
+		sugg_categoryResolvers,
+		sugg_suggestionResolvers
 	)
 });

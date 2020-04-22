@@ -55,6 +55,7 @@ return res;
 }
 
 export async function addActivityToUser(activities,username,token) {
+	console.log(activities, username);
 	let auth = await Isauth(token);
 	if(auth){
 		let user = await getUserByUsername(username);
@@ -246,14 +247,22 @@ export async function getAllActivities(url){
 	return res.data;
 }
 
-export async function createActivity(url, body){
+export async function createActivity(url, body, token){
 	console.log(url);
 	console.log(body.informacion);
 	let res = await axios.post(url, body);
 	console.log(res.data)
-	let sta = {
-		id: res.data.id
+	let messa = await addActivityToUser(res.data.id, res.data.administrador, token);
+	console.log(messa)
+	let sta;
+	if(messa.error == null){
+		sta = {
+			id: res.data.id
+		}
+	}else{
+		sta = null;
 	}
+
 	return sta;
 }
 export async function updateActivity(url, body){
@@ -279,13 +288,20 @@ export async function commentActivity(url, body){
 	return sta;
 }
 
-export async function addMember(url){
+export async function addMember(url, id, user, token){
 	console.log(url);
 	let res = await axios.put(url);
 	console.log(res.data.id);
-	let sta = {
-		id: res.data.id
+	let messa = await addActivityToUser(id, user, token);
+	let sta;
+	if(messa.error == null){
+		sta = {
+			id: res.data.id
+		}
+	}else{
+		sta = null;
 	}
+	
 	return sta;
 }
 

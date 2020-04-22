@@ -22,8 +22,8 @@ const activityResolvers = {
         }
     },
     Mutation: {
-        createActivity: (_, {activity}) => {
-            let response = createActivity(`${URL}/`, activity);
+        createActivity: (_, {activity, token}) => {
+            let response = createActivity(`${URL}/`, activity, token);
             return response;
         },
         updateActivity: (_, {id, activity}) => {
@@ -38,8 +38,8 @@ const activityResolvers = {
             let response = deleteActivity(`${URL}/${id}/`);
             return response;
         },
-        addMember: (_, {id, user}) => {
-            let response = addMember(`${URL}/${id}/add/${user}`);
+        addMember: (_, {id, user, token}) => {
+            let response = addMember(`${URL}/${id}/add/${user}`, id, user,token);
             return response;
         }
     }

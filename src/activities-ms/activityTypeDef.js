@@ -99,11 +99,11 @@ export const activityQueries = `
 ;
 
 export const activityMutations = `
-    createActivity(activity: ActivityInput): ReturnId
+    createActivity(activity: ActivityInput, token: String): ReturnId
     updateActivity(id: Int, activity: ActivityInput): ReturnId 
     updateAdministrator(activity: AdministratorInputUpdate): Activity
     commentActivity(id: Int, comment: CommentInput):  Response
     deleteActivity(id: Int): Response
-    addMember(id: Int, user: String): ReturnId
+    addMember(id: Int, user: String, token: String): ReturnId
 
 `

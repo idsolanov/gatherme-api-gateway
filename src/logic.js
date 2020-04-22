@@ -349,15 +349,15 @@ async function sugg_existCategory(name){
 }
 //suggestion
 export async function sugg_getSuggestions() {
-	let res = axios.get(url + sugg_ms_PORT + '/Suggestion');
+	let res = await axios.get(url + sugg_ms_PORT + '/Suggestion');
 	return res.data;
 }
 export async function sugg_createSuggest(user) {
-	let res = axios.post(`${url}${sugg_ms_PORT}/Suggestion/CreateSuggest`, user);
+	let res = await axios.post(`${url}${sugg_ms_PORT}/Suggestion/CreateSuggest`, user);
 	return res.data;
 }
 export async function sugg_deactivate(suggestion) {
-	let res = axios.put(`${url}${sugg_ms_PORT}/Suggestion/Deactivate`, suggestion);
+	let res = await axios.put(`${url}${sugg_ms_PORT}/Suggestion/Deactivate`, suggestion);
 	return res.data;
 }
 /*--------------compose methods--------------------*/

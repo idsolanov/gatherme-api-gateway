@@ -1,0 +1,25 @@
+query{
+  users{id}
+}
+mutation{
+  newUser(user:{
+    id: "4"
+    name: "Mamba"
+  }){ans}
+}
+mutation{
+  createLike(like:{
+    name: "sports"
+  }){ans}
+}
+
+
+mutation{
+ newLike(user:{
+  user:{
+    id:"4"
+    name:"Mamba"
+  }
+  likes:[{name:"Sports"}]
+}){ans}
+}

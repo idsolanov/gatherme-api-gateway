@@ -5,7 +5,7 @@
 export const sugg_userTypeDef = `
 input sugg_UserInput{
     id: String!
-    name: String!
+    name: String
 }
 type sugg_User {
     id: String!
@@ -27,15 +27,15 @@ input sugg_UserSingle{
 }
 input sugg_UserReport{
     user: sugg_UserInput!
-    userReports: [sugg_UserInput!]
+    userReports: [sugg_UserInput!]!
 }
 input sugg_UserGathers{
     user: sugg_UserInput!
-    gathers: [sugg_UserInput!]
+    gathers: [sugg_UserInput!]!
 }
 input sugg_UserLike{
     user: sugg_UserInput!
-    likes: [sugg_LikeInput!]
+    likes: [sugg_LikeInput!]!
 }
 `
 ;
@@ -104,6 +104,7 @@ export const sugg_userQueries = `
 export const sugg_likeQueries = `
     likes: [sugg_Like!]
     filterByLike(name: String!): [sugg_User!]
+    existLike(name: String!): Boolean!
 `;
 export const sugg_categoryQueries = `
     categories: [sugg_Category!]
@@ -117,26 +118,26 @@ export const sugg_suggestionQueries = `
 /*           Mutations          */
 /*==============================*/
 export const sugg_userMutations = `
-    newUser(user: sugg_UserInput): sugg_responseUser
-    newReport(user: sugg_UserReport): sugg_responseUser
-    newGather(user: sugg_UserGathers): sugg_responseUser
-    newLike(user: sugg_UserLike): sugg_responseUser
+    newUser(myuser: sugg_UserInput): sugg_responseUser
+    newReport(myuser: sugg_UserReport): sugg_responseUser
+    newGather(myuser: sugg_UserGathers): sugg_responseUser
+    sugg_newLike(myuser: sugg_UserLike): sugg_responseUser
 `
 ;
 
 export const sugg_likeMutations = `
-    newLike(like: sugg_LikeInput): sugg_responseLike
-    newHave(like: sugg_LikeRelationship): sugg_responseLike
+    createLike(mylike: sugg_LikeInput): sugg_responseLike
+    newIs(mylike: sugg_LikeRelationship): sugg_responseLike
 `
 ;
 
 export const sugg_categoryMutations = `
-    newCategory(category: sugg_CategoryInput): sugg_responseCategory
+    newCategory(mycategory: sugg_CategoryInput): sugg_responseCategory
 `
 ;
 
 export const sugg_suggestionMutations = `
-    createSuggest(user: sugg_UserSingle): [sugg_SuggestionInfo!]
-    deactivate(suggestion: sugg_SuggestionInput): sugg_responseSuggestion
+    createSuggest(myuser: sugg_UserSingle): [sugg_SuggestionInfo!]
+    deactivate(mysuggestion: sugg_SuggestionInput): sugg_responseSuggestion
 `
 ;

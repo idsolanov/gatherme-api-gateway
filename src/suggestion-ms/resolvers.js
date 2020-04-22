@@ -15,18 +15,22 @@ const sugg_userResolvers = {
     },
     Mutation: {
         newUser: (_, { user }) => {
+            console.log("user",user)
             let response = sugg_newUser(user);
             return response;
         },
         newReport: (_, { userInfo }) => {
+            console.log(userInfo);
             let response = sugg_newReport(userInfo);
             return response;
         },
         newGather: (_, { userInfo }) => {
+            console.log(userInfo);
             let response = sugg_newGather(userInfo);
             return response;
         },
-        sugg_newLike: (_, { userInfo }) => {
+        newLike: (_, { userInfo }) => {
+            console.log(userInfo);
             let response = sugg_newLike(userInfo);
             return response;
         }
@@ -49,7 +53,7 @@ const sugg_likeResolvers = {
         }
     },
     Mutation: {
-        createLike: (_, { like }) => {
+        sugg_createLike: (_, { like }) => {
             let response = sugg_createLike(like);
             return response;
         },

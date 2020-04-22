@@ -118,26 +118,26 @@ export const sugg_suggestionQueries = `
 /*           Mutations          */
 /*==============================*/
 export const sugg_userMutations = `
-    newUser(myuser: sugg_UserInput): sugg_responseUser
-    newReport(myuser: sugg_UserReport): sugg_responseUser
-    newGather(myuser: sugg_UserGathers): sugg_responseUser
-    sugg_newLike(myuser: sugg_UserLike): sugg_responseUser
+    newUser(user: sugg_UserInput): sugg_responseUser
+    newReport(userInfo: sugg_UserReport): sugg_responseUser
+    newGather(userInfo: sugg_UserGathers): sugg_responseUser
+    newLike(userInfo: sugg_UserLike): sugg_responseUser
 `
 ;
 
 export const sugg_likeMutations = `
-    createLike(mylike: sugg_LikeInput): sugg_responseLike
-    newIs(mylike: sugg_LikeRelationship): sugg_responseLike
+    sugg_createLike(like: sugg_LikeInput): sugg_responseLike
+    newIs(likeInfo: sugg_LikeRelationship): sugg_responseLike
 `
 ;
 
 export const sugg_categoryMutations = `
-    newCategory(mycategory: sugg_CategoryInput): sugg_responseCategory
+    newCategory(category: sugg_CategoryInput): sugg_responseCategory
 `
 ;
 
 export const sugg_suggestionMutations = `
-    createSuggest(myuser: sugg_UserSingle): [sugg_SuggestionInfo!]
-    deactivate(mysuggestion: sugg_SuggestionInput): sugg_responseSuggestion
+    createSuggest(user: sugg_UserSingle): [sugg_SuggestionInfo!]
+    deactivate(suggestion: sugg_SuggestionInput): sugg_responseSuggestion
 `
 ;

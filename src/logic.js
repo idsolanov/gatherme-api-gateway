@@ -1,7 +1,6 @@
 const axios = require('axios');
 
-//const url = "http://172.17.0.1:";
-const url = "http://172.22.0.1:";
+const url = "http://172.17.0.1:";
 const url_user = "3000/gatherme-users-ms";
 const auth_ms_PORT = '3001'
 const comu_ms_PORT = '3002/'
@@ -307,7 +306,7 @@ export async function sugg_newGather(userInfo) {
 	return res.data;
 }
 export async function sugg_newLike(userInfo) {
-	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewLike`, user);
+	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewLike`, userInfo);
 	return res.data;
 }
 //like
@@ -342,6 +341,10 @@ export async function sugg_filterByCategory(name) {
 }
 export async function sugg_newCategory(category) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/Category/NewCategory`, category);
+	return res.data;
+}
+async function sugg_existCategory(name){
+	let res = axios.get(`${url}${sugg_ms_PORT}/Category/ExistCategory?name=${name}`);
 	return res.data;
 }
 //suggestion
@@ -384,7 +387,6 @@ export async function register(user) {
 	if (singupResponse.email != null) {
 		let userResponse = await createUser(userBody)
 		console.log("Create user successful");
-		userResponse.token = singupResponse.token;
 		return userResponse
 	}
 

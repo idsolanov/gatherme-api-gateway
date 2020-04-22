@@ -1,0 +1,97 @@
+query{
+  users{id}
+}
+mutation{
+  newUser(user:{
+    id: "4"
+    name: "Mamba"
+  }){ans}
+}
+mutation{
+  sugg_createLike(like:{
+    name: "Film"
+  }){ans}
+}
+
+mutation{
+newLike(userInfo:{
+  user:{
+    id:"4"
+    name:"Mamba"
+  }
+  likes:[{name:"sports"}]
+}){ans}
+}
+
+mutation{
+newReport(userInfo:{
+  user:{
+    id:"1"
+  }
+  userReports:[{id:"2"}]
+}){ans}
+}
+mutation{
+newGather(userInfo:{
+  user:{
+    id:"2"
+  }
+  gathers:[{id:"3"}]
+}){ans}
+}
+mutation {
+  newCategory(category:{
+    name:"Art"
+  }){ans}
+}
+mutation{
+  newIs(likeInfo:{
+    like:{
+      name:"Film"
+    }
+    category:{
+      name:"Art"
+    }
+  }){ans}
+}
+
+/*
+	let ansC = await sugg_existCategory("body.category");
+	console.log(ansC);
+	if(!ansC){
+		let category = {
+			name: body.category
+		}
+		console.log(category);
+		let catRes = await sugg_newCategory(category);
+		console.log(catRes);
+	}
+	let ansL = await sugg_newLike(body.name);
+	console.log(ansL);
+	if(!ansL){
+		let like = {
+			name: body.name
+		}
+		console.log(like);
+		console.log(like);
+		let likeRes = await sugg_createLike(like);
+		console.log(likeRes);
+	}
+	let likeInfo = {
+		like:{
+			name: body.name
+		},
+		category:{
+			name: body.category
+		}
+	}
+	let ansRes = await sugg_newLike(likeInfo);
+	console.log(ansRes);*/
+
+userResponse.token = singupResponse.token;
+		let node = {
+			id: userResponse.id,
+			name: userResponse.name
+		}
+		let nodeResponse = await sugg_newUser(node);
+		console.log(nodeResponse);

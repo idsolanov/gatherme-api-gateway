@@ -5,7 +5,7 @@
 export const sugg_userTypeDef = `
 input sugg_UserInput{
     id: String!
-    name: String!
+    name: String
 }
 type sugg_User {
     id: String!
@@ -27,15 +27,15 @@ input sugg_UserSingle{
 }
 input sugg_UserReport{
     user: sugg_UserInput!
-    userReports: [sugg_UserInput!]
+    userReports: [sugg_UserInput!]!
 }
 input sugg_UserGathers{
     user: sugg_UserInput!
-    gathers: [sugg_UserInput!]
+    gathers: [sugg_UserInput!]!
 }
 input sugg_UserLike{
     user: sugg_UserInput!
-    likes: [sugg_LikeInput!]
+    likes: [sugg_LikeInput!]!
 }
 `
 ;
@@ -104,6 +104,7 @@ export const sugg_userQueries = `
 export const sugg_likeQueries = `
     likes: [sugg_Like!]
     filterByLike(name: String!): [sugg_User!]
+    existLike(name: String!): Boolean!
 `;
 export const sugg_categoryQueries = `
     categories: [sugg_Category!]
@@ -118,15 +119,15 @@ export const sugg_suggestionQueries = `
 /*==============================*/
 export const sugg_userMutations = `
     newUser(user: sugg_UserInput): sugg_responseUser
-    newReport(user: sugg_UserReport): sugg_responseUser
-    newGather(user: sugg_UserGathers): sugg_responseUser
-    newLike(user: sugg_UserLike): sugg_responseUser
+    newReport(userInfo: sugg_UserReport): sugg_responseUser
+    newGather(userInfo: sugg_UserGathers): sugg_responseUser
+    newLike(userInfo: sugg_UserLike): sugg_responseUser
 `
 ;
 
 export const sugg_likeMutations = `
-    newLike(like: sugg_LikeInput): sugg_responseLike
-    newHave(like: sugg_LikeRelationship): sugg_responseLike
+    sugg_createLike(like: sugg_LikeInput): sugg_responseLike
+    newIs(likeInfo: sugg_LikeRelationship): sugg_responseLike
 `
 ;
 
@@ -136,7 +137,7 @@ export const sugg_categoryMutations = `
 ;
 
 export const sugg_suggestionMutations = `
-    createSuggest(user: sugg_UserSingle): [sugg_SuggestionInfo!]
+    createSuggest(user: sugg_UserSingle): [sugg_SuggestionInfo]
     deactivate(suggestion: sugg_SuggestionInput): sugg_responseSuggestion
 `
 ;

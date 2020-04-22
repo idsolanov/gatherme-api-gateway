@@ -137,7 +137,7 @@ export const sugg_categoryMutations = `
 ;
 
 export const sugg_suggestionMutations = `
-    createSuggest(user: sugg_UserSingle): [sugg_SuggestionInfo!]
+    createSuggest(user: sugg_UserSingle): [sugg_SuggestionInfo]
     deactivate(suggestion: sugg_SuggestionInput): sugg_responseSuggestion
 `
 ;

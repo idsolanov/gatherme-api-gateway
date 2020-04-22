@@ -92,7 +92,8 @@ const sugg_suggestionResolvers = {
     },
     Mutation: {
         createSuggest: (_, { user }) => {
-            let response = sugg_createSuggest(`${URL}/Suggestion/CreateSuggest`, user);
+            console.log(user);
+            let response = sugg_createSuggest(user);
             return response;
         },
         deactivate: (_, { suggestion }) => {

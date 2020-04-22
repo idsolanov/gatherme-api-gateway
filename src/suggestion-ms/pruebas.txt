@@ -8,7 +8,7 @@ mutation{
   }){ans}
 }
 mutation{
-  createLike(like:{
+  sugg_createLike(like:{
     name: "Film"
   }){ans}
 }
@@ -39,9 +39,9 @@ newGather(userInfo:{
   gathers:[{id:"3"}]
 }){ans}
 }
-mutation{
+mutation {
   newCategory(category:{
-    name: "Film"
+    name:"Art"
   }){ans}
 }
 mutation{

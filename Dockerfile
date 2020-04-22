@@ -1,14 +1,14 @@
 FROM node:carbon-slim
 
 # Create app directory
-WORKDIR /sa-api
+WORKDIR /gatherme-api-gateway
 
 # Install app dependencies
-COPY package.json /sa-api/
+COPY package.json /gatherme-api-gateway/
 RUN npm install
 
 # Bundle app source
-COPY . /sa-api/
+COPY . /gatherme-api-gateway/
 RUN npm run prepublish
 
 CMD [ "npm", "run", "runServer" ]

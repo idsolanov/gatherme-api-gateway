@@ -1,6 +1,6 @@
 version: '2.1'
 services:
-  sa-api:
+  gatherme-api-gateway:
     build: .
     environment:
       PORT: '9001'

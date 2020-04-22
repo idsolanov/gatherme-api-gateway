@@ -48,6 +48,82 @@ export async function updateUser(body) {
 	return res.data;
 
 }
+export async function test(body){
+
+let res = await addActivityToUser(body.activities,body.username,body.token);
+return res;
+}
+
+export async function addActivityToUser(activities,username,token) {
+	let auth = await Isauth(token);
+	if(auth){
+		let user = await getUserByUsername(username);
+		user.activities.push(activities);
+		let update = await updateUser(user);
+		return update;
+	}
+	else{
+		let error = {
+			error:"El usuario no esta autenticado"
+		}
+		return error;
+	}
+
+}
+
+export async function addComunityToUser(comunity,username,token) {
+	let auth = await Isauth(token);
+	if(auth){
+		let user = await getUserByUsername(username);
+		user.communities.push(comunity);
+		let update = await updateUser(user);
+		return update;
+	}
+	else{
+		let error = {
+			error:"El usuario no esta autenticado"
+		}
+		return error;
+	}
+
+}
+
+export async function addLikeToUser(like,username,token) {
+	let auth = await Isauth(token);
+	if(auth){
+		let user = await getUserByUsername(username);
+		user.likes.push(like);
+		let update = await updateUser(user);
+		return update;
+	}
+	else{
+		let error = {
+			error:"El usuario no esta autenticado"
+		}
+		return error;
+	}
+
+}
+
+export async function addGatherToUser(gather,username,token) {
+	let auth = await Isauth(token);
+	if(auth){
+		let user = await getUserByUsername(username);
+		user.gathers.push(gather);
+		let update = await updateUser(user);
+		return update;
+	}
+	else{
+		let error = {
+			error:"El usuario no esta autenticado"
+		}
+		return error;
+	}
+
+}
+
+
+
 
 export async function updateLike(body) {
 
@@ -104,6 +180,22 @@ export async function authorization(token){
 	}
 	let response = await axios.post(url+auth_ms_PORT+"/auth","",options)
 	return response.data
+}
+
+export async function Isauth(tokenI){
+	let tokenBody = {
+		token:tokenI
+	}
+	let response = await authorization(tokenBody);
+	console.log(response);
+	console.log(typeof response.authorization)
+	if(response.authorization){
+		return true;
+	}
+	else{
+		return false;
+	}
+
 }
 
 //comunication ms function

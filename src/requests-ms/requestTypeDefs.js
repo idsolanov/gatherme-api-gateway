@@ -14,17 +14,14 @@ type RequestResponse {
 	error: String
 }
 
-input RequestInput{
+input RequestInput {
 	user_origin: String!
 	user_destination: String!
+	token: String
 }
 
-input RequestSentInput{
-	user_origin: String!
-}
-
-input RequestInboxInput{
-	user_destination: String!
+input RequestGetInput {
+	user: String!
 }
 `;
 
@@ -32,17 +29,16 @@ input RequestInboxInput{
 /*-----QUERIES-----*/
 
 export const requestQueries = `
-	sent(user: RequestSentInput): [Request!]
-	inbox(user: RequestInboxInput): [Request!]
+	sentRequests(user: RequestGetInput): [Request!]
+	inboxRequests(user: RequestGetInput): [Request!]
 `;
 
 
 /*----MUTATIONS----*/
 
 export const requestMutations = `
-	create(users: RequestInput): RequestResponse
-	accept(users: RequestInput): RequestResponse
-	reject(users: RequestInput): RequestResponse
-	erase(users: RequestInput): RequestResponse
+	createRequest(body: RequestInput): RequestResponse
+	acceptRequest(body: RequestInput): RequestResponse
+	rejectRequest(body: RequestInput): RequestResponse
+	eraseRequest(body: RequestInput): RequestResponse
 `;
-

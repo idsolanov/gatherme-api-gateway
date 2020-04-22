@@ -5,6 +5,9 @@ const url_user = "3000/gatherme-users-ms";
 const auth_ms_PORT = '3001'
 const comu_ms_PORT = '3002/'
 const sugg_ms_PORT = '80'
+const req_ms_PORT = '4444'
+const req_entrypoint = 'gatherme-requests'
+
 
 export async function getUserByID(id) {
 	let res = await axios.get(url + url_user + "/user-id/" + id)
@@ -287,6 +290,59 @@ export async function deleteActivity(url) {
 	return sta;
 
 }
+
+/*----------Requests----------*/
+//Queries
+export async function sentRequests (user) {
+	let res = await axios.get(`${url}${req_ms_PORT}/${user.user}/${req_entrypoint}/sent`);
+	let ans = { result: res.data };
+	return ans;
+}
+
+export async function inboxRequests (user) {
+	let res = await axios.get(`${url}${req_ms_PORT}/${user.user}/${req_entrypoint}/inbox`);
+	let ans = { result: res.data };
+	return ans;
+}
+
+//Mutations
+export async function createRequest (body) {
+	let destination = {	user_destination: body.user_destination };
+	let res = await axios.post(`${url}${req_ms_PORT}/${body.user_origin}/${req_entrypoint}/create`, destination);
+	let ans = { result: res.data };
+	return ans;
+}
+
+export async function acceptRequest (body) {
+	let auth = await Isauth(body.token);
+	if(auth) {
+		let origin = { user_origin: body.user_origin };
+		let res = await axios.put(`${url}${req_ms_PORT}/${body.user_destination}/${req_entrypoint}/accept`, origin);
+		addGatherToUser(`${body.user_origin}`, `${body.user_destination}`, body.token);
+		addGatherToUser(`${body.userDestination}`, `${body.userOrigin}`, body.token);
+		let ans = { result: res.data };
+		return ans;
+	}
+	else {
+		let error = { error: "El usuario no esta autenticado" };
+		return error;
+	}
+}
+
+export async function rejectRequest (body) {
+	let origin = { user_origin: body.user_origin };
+	let res = await axios.put(`${url}${req_ms_PORT}/${body.user_destination}/${req_entrypoint}/reject`, origin);
+	let ans = { result: res.data };
+	return ans;
+}
+
+export async function eraseRequest (body) {
+	let destination = { user_destination: body.user_destination };
+	let res = await axios.delete(`${url}${req_ms_PORT}/${body.user_origin}/${req_entrypoint}/delete`, destination);
+	let ans = { result: res.data };
+	return ans;
+}
+
 /*================Suggestions=================*/
 //User
 export async function sugg_getUsers() {
@@ -360,6 +416,7 @@ export async function sugg_deactivate(suggestion) {
 	let res = await axios.put(`${url}${sugg_ms_PORT}/Suggestion/Deactivate`, suggestion);
 	return res.data;
 }
+
 /*--------------compose methods--------------------*/
 export async function register(user) {
 	let account = {

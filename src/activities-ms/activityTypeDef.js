@@ -25,6 +25,10 @@ type Comment {
 type Response {
     Status: Int
 }
+ type ReturnId {
+     id: Int
+ }
+
 input ActivityInput {
     informacion:  String!
     nombre:  String!
@@ -95,10 +99,11 @@ export const activityQueries = `
 ;
 
 export const activityMutations = `
-    createActivity(activity: ActivityInput): Response
-    updateActivity(id: Int, activity: ActivityInput): Response
+    createActivity(activity: ActivityInput): ReturnId
+    updateActivity(id: Int, activity: ActivityInput): ReturnId 
     updateAdministrator(activity: AdministratorInputUpdate): Activity
     commentActivity(id: Int, comment: CommentInput):  Response
     deleteActivity(id: Int): Response
+    addMember(id: Int, user: String): ReturnId
 
 `

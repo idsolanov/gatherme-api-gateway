@@ -250,9 +250,9 @@ export async function createActivity(url, body){
 	console.log(url);
 	console.log(body.informacion);
 	let res = await axios.post(url, body);
-	console.log(res.status)
+	console.log(res.data)
 	let sta = {
-		Status: res.status
+		id: res.data.id
 	}
 	return sta;
 }
@@ -260,9 +260,9 @@ export async function updateActivity(url, body){
 	console.log(url);
 	console.log(body);
 	let res = await axios.put(url, body);
-	console.log(res.status)
+	console.log(res.data.id)
 	let sta = {
-		Status: res.status
+		id: res.data.id
 	}
 	return sta;
 
@@ -275,6 +275,16 @@ export async function commentActivity(url, body){
 	console.log(res.status)
 	let sta = {
 		Status: res.status
+	}
+	return sta;
+}
+
+export async function addMember(url){
+	console.log(url);
+	let res = await axios.put(url);
+	console.log(res.data.id);
+	let sta = {
+		id: res.data.id
 	}
 	return sta;
 }

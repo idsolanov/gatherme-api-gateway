@@ -4,7 +4,8 @@ import {getActivityByID,
       createActivity,
        updateActivity,
        commentActivity,
-       deleteActivity
+       deleteActivity,
+       addMember
     }from '../logic'
 
 const URL = `http://172.17.0.1:4000/gatherme-activities-ms/activities/activity`;
@@ -35,6 +36,10 @@ const activityResolvers = {
         },
         deleteActivity: (_, {id}) => {
             let response = deleteActivity(`${URL}/${id}/`);
+            return response;
+        },
+        addMember: (_, {id, user}) => {
+            let response = addMember(`${URL}/${id}/add/${user}`);
             return response;
         }
     }

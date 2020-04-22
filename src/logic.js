@@ -53,9 +53,11 @@ export async function updateUser(body) {
 }
 export async function test(body) {
 
-	let res = await addActivityToUser(body.activities, body.username, body.token);
-	return res;
+let res = await addComunityToUser(body.activities,body.username,body.token);
+return res;
 }
+
+
 
 export async function addActivityToUser(activities, username, token) {
 	let auth = await Isauth(token);
@@ -249,23 +251,31 @@ export async function getAllActivities(url) {
 	return res.data;
 }
 
-export async function createActivity(url, body) {
+export async function createActivity(url, body, token){
 	console.log(url);
 	console.log(body.informacion);
 	let res = await axios.post(url, body);
-	console.log(res.status)
-	let sta = {
-		Status: res.status
+	console.log(res.data)
+	let messa = await addActivityToUser(res.data.id, res.data.administrador, token);
+	console.log(messa)
+	let sta;
+	if(messa.error == null){
+		sta = {
+			id: res.data.id
+		}
+	}else{
+		sta = null;
 	}
+
 	return sta;
 }
 export async function updateActivity(url, body) {
 	console.log(url);
 	console.log(body);
 	let res = await axios.put(url, body);
-	console.log(res.status)
+	console.log(res.data.id)
 	let sta = {
-		Status: res.status
+		id: res.data.id
 	}
 	return sta;
 
@@ -282,7 +292,24 @@ export async function commentActivity(url, body) {
 	return sta;
 }
 
-export async function deleteActivity(url) {
+export async function addMember(url, id, user, token){
+	console.log(url);
+	let res = await axios.put(url);
+	console.log(res.data.id);
+	let messa = await addActivityToUser(id, user, token);
+	let sta;
+	if(messa.error == null){
+		sta = {
+			id: res.data.id
+		}
+	}else{
+		sta = null;
+	}
+	
+	return sta;
+}
+
+export async function deleteActivity(url){
 	let res = await axios.delete(url);
 	let sta = {
 		Status: res.status

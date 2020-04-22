@@ -4,7 +4,8 @@ import {getActivityByID,
       createActivity,
        updateActivity,
        commentActivity,
-       deleteActivity
+       deleteActivity,
+       addMember
     }from '../logic'
 
 const URL = `http://172.17.0.1:4000/gatherme-activities-ms/activities/activity`;
@@ -21,8 +22,8 @@ const activityResolvers = {
         }
     },
     Mutation: {
-        createActivity: (_, {activity}) => {
-            let response = createActivity(`${URL}/`, activity);
+        createActivity: (_, {activity, token}) => {
+            let response = createActivity(`${URL}/`, activity, token);
             return response;
         },
         updateActivity: (_, {id, activity}) => {
@@ -35,6 +36,10 @@ const activityResolvers = {
         },
         deleteActivity: (_, {id}) => {
             let response = deleteActivity(`${URL}/${id}/`);
+            return response;
+        },
+        addMember: (_, {id, user, token}) => {
+            let response = addMember(`${URL}/${id}/add/${user}`, id, user,token);
             return response;
         }
     }

@@ -10,8 +10,8 @@ type User {
     age: Int!
     city: String!
     likes: [String!]
-    communities: [String!]
-    activities:[String!]
+    communities: [Int!]
+    activities:[Int!]
     gathers: [String!]
     error: String
 }
@@ -32,8 +32,8 @@ type responseUser {
     age: Int
     city: String
     likes: [String]
-    communities: [String]
-    activities:[String]
+    communities: [Int]
+    activities:[Int]
     gathers: [String]
     error: String
     token: String
@@ -69,8 +69,8 @@ input UserInput {
     age: Int!
     city: String!
     likes: [String!]
-    communities: [String!]
-    activities:[String!]
+    communities: [Int!]
+    activities:[Int!]
     gathers: [String!]
 }
 
@@ -85,8 +85,8 @@ input UserInputUpdate {
     age: Int!
     city: String!
     likes: [String!]
-    communities: [String!]
-    activities:[String!]
+    communities: [Int!]
+    activities:[Int!]
     gathers: [String!]
 }
 
@@ -105,13 +105,13 @@ input  register {
     age: Int!
     city: String!
     likes: [String!]
-    communities: [String!]
-    activities:[String!]
+    communities: [Int!]
+    activities:[Int!]
     gathers: [String!]
 }
 
 input testUser{
-    activities: String!
+    activities: Int!
     username: String!
     token: String!
 }

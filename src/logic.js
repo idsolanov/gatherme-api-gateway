@@ -50,7 +50,7 @@ export async function updateUser(body) {
 }
 export async function test(body){
 
-let res = await addActivityToUser(body.activities,body.username,body.token);
+let res = await addComunityToUser(body.activities,body.username,body.token);
 return res;
 }
 

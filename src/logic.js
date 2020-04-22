@@ -332,11 +332,11 @@ export async function sugg_newIs(likeInfo) {
 }
 //category
 export async function sugg_getCategories() {
-	let res = axios.get(url + sugg_ms_PORT + '/Category');
+	let res = await axios.get(url + sugg_ms_PORT + '/Category');
 	return res.data;
 }
 export async function sugg_filterByCategory(name) {
-	let res = axios.get(`${url}${sugg_ms_PORT}/Category/FilterByCategory?name=${name}`);
+	let res = await axios.get(`${url}${sugg_ms_PORT}/Category/FilterByCategory?name=${name}`);
 	return res.data;
 }
 export async function sugg_newCategory(category) {
@@ -344,7 +344,7 @@ export async function sugg_newCategory(category) {
 	return res.data;
 }
 async function sugg_existCategory(name){
-	let res = axios.get(`${url}${sugg_ms_PORT}/Category/ExistCategory?name=${name}`);
+	let res = await axios.get(`${url}${sugg_ms_PORT}/Category/ExistCategory?name=${name}`);
 	return res.data;
 }
 //suggestion

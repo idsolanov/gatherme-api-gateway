@@ -428,14 +428,11 @@ export async function sugg_newUser(user) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewUser`, user);
 	return res.data;
 }
-export async function sugg_newReport(userInfo) {
-	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewReport`, userInfo);
-	return res.data;
-}
 export async function sugg_newGather(userInfo) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewGather`, userInfo);
 	return res.data;
 }
+//Nueva relación LIKE con un nodo like
 export async function sugg_newLike(userInfo) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewLike`, userInfo);
 	return res.data;
@@ -453,6 +450,7 @@ export async function sugg_existLike(name) {
 	let res = await axios.get(`${url}${sugg_ms_PORT}/Like/ExistLike?name=${name}`);
 	return res.data;
 }
+//Nuevo nodo Like
 export async function sugg_createLike(like) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/Like/NewLike`, like);
 	return res.data;
@@ -483,6 +481,10 @@ export async function sugg_getSuggestions() {
 	let res = await axios.get(url + sugg_ms_PORT + '/Suggestion');
 	return res.data;
 }
+export async function sugg_getSuggestion(id){
+	let res = await axios.get(`${url}${sugg_ms_PORT}/Suggestion/GetSuggestion?id=${id}`);
+	return res.data;
+}
 export async function sugg_createSuggest(user) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/Suggestion/CreateSuggest`, user);
 	return res.data;
@@ -491,7 +493,15 @@ export async function sugg_deactivate(suggestion) {
 	let res = await axios.put(`${url}${sugg_ms_PORT}/Suggestion/Deactivate`, suggestion);
 	return res.data;
 }
-
+//report
+export async function sugg_getAllReports(){
+	let res = await axios.get(`${url}${sugg_ms_PORT}/Report`);
+	return res.data;
+}
+export async function sugg_newReport(reportInfo) {
+	let res = await axios.post(`${url}${sugg_ms_PORT}/Report`, reportInfo);
+	return res.data;
+}
 /*--------------compose methods--------------------*/
 export async function register(user) {
 	let account = {

@@ -54,29 +54,46 @@ mutation{
     }
   }){ans}
 }
+mutation {
+  createReport(reportInfo:{
+    report:{
+      commentary:"Sapo"
+    },
+    user:{
+      id: "11"
+    },
+    userReported: {
+      id: "12"
+    }
+  }){ans}
+}
+query{
+  reports{
+    id
+  }
+}
+query{
+  getSuggestion(id:"11"){suggestedUser{name}}
+}
+==========================================================
 
-/*
-	let ansC = await sugg_existCategory("body.category");
-	console.log(ansC);
+/*let ansC = await sugg_existCategory("body.category");
+	//Existencia de la categoría
 	if(!ansC){
-		let category = {
-			name: body.category
-		}
-		console.log(category);
-		let catRes = await sugg_newCategory(category);
-		console.log(catRes);
+		console.log("Error categoría no existente: ",category);
 	}
-	let ansL = await sugg_newLike(body.name);
-	console.log(ansL);
+	let ansL = await sugg_existLike(body.name);
+	//Existencia del gusto en Neo4j
 	if(!ansL){
 		let like = {
 			name: body.name
 		}
 		console.log(like);
-		console.log(like);
+		//lo crea porque no existe
 		let likeRes = await sugg_createLike(like);
 		console.log(likeRes);
 	}
+
 	let likeInfo = {
 		like:{
 			name: body.name
@@ -84,8 +101,8 @@ mutation{
 		category:{
 			name: body.category
 		}
-	}
-	let ansRes = await sugg_newLike(likeInfo);
+	} 
+	let ansRes = await sugg_newIs(likeInfo);
 	console.log(ansRes);*/
 
 userResponse.token = singupResponse.token;

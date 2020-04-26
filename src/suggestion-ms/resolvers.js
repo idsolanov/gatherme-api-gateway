@@ -1,8 +1,8 @@
 import {
-    sugg_getUsers, sugg_newUser, sugg_newReport, sugg_newGather, sugg_newLike,
+    sugg_getUsers, sugg_newUser, sugg_newGather, sugg_newLike,
     sugg_getLikes, sugg_filterByLike, sugg_existLike, sugg_createLike, sugg_newIs,
     sugg_getCategories, sugg_filterByCategory, sugg_newCategory,
-    sugg_getSuggestions, sugg_createSuggest, sugg_deactivate
+    sugg_getSuggestions, sugg_getSuggestion,sugg_createSuggest, sugg_deactivate,sugg_getAllReports,sugg_newReport
 } from '../logic';
 const URL = `http://172.22.0.1:80`;
 
@@ -15,13 +15,8 @@ const sugg_userResolvers = {
     },
     Mutation: {
         newUser: (_, { user }) => {
-            console.log("user",user)
+            console.log("user", user)
             let response = sugg_newUser(user);
-            return response;
-        },
-        newReport: (_, { userInfo }) => {
-            console.log(userInfo);
-            let response = sugg_newReport(userInfo);
             return response;
         },
         newGather: (_, { userInfo }) => {
@@ -88,11 +83,14 @@ const sugg_suggestionResolvers = {
         suggestions: (_, { }) => {
             let response = sugg_getSuggestions();
             return response;
+        },
+        getSuggestion:  (_, {id}) => {
+            let response = sugg_getSuggestion(id);
+            return response;
         }
     },
     Mutation: {
         createSuggest: (_, { user }) => {
-            console.log(user);
             let response = sugg_createSuggest(user);
             return response;
         },
@@ -104,4 +102,19 @@ const sugg_suggestionResolvers = {
 
 };
 
-export { sugg_userResolvers, sugg_likeResolvers, sugg_categoryResolvers, sugg_suggestionResolvers };
+const sugg_reportResolvers = {
+    Query: {
+        reports: (_, { }) => {
+            let response = sugg_getAllReports();
+            return response;
+        }
+    },
+    Mutation: {
+        createReport:  (_, {reportInfo}) => {
+            let response = sugg_newReport(reportInfo);
+            return response;
+        }
+    }
+}
+
+export { sugg_userResolvers, sugg_likeResolvers, sugg_categoryResolvers, sugg_suggestionResolvers,sugg_reportResolvers };

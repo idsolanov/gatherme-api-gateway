@@ -437,6 +437,7 @@ export async function sugg_newGather(userInfo) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewGather`, userInfo);
 	return res.data;
 }
+//Nueva relación LIKE con un nodo like
 export async function sugg_newLike(userInfo) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewLike`, userInfo);
 	return res.data;
@@ -454,6 +455,7 @@ export async function sugg_existLike(name) {
 	let res = await axios.get(`${url}${sugg_ms_PORT}/Like/ExistLike?name=${name}`);
 	return res.data;
 }
+//Nuevo nodo Like
 export async function sugg_createLike(like) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/Like/NewLike`, like);
 	return res.data;

@@ -40,9 +40,15 @@ type responseUser {
 }
 
 type Like {
-    id: String!
-    category: String!
-    name: String!
+    id: String
+    category: String
+    name: String
+    error: String
+}
+
+type ReturnCreationLike{
+    ans : String
+    error: String
 }
 
 
@@ -130,10 +136,11 @@ export const userMutations = `
     createUser(user: UserInput!): User!
     updateUser(user: UserInputUpdate!): responseDelete!
     deleteUser(id: inputDelete!): responseDelete!
-    createLike(like: LikeInput!): Like!
+    createLike(like: LikeInput!,username: String!,token: String!): Like!
     updateLike(like: LikeInputUpdate!): responseDelete!
     deleteLike(id: inputDelete!): responseDelete!
 
+    addLikeToUser(like: String!, username: String!, token: String!): ReturnCreationLike!
     register(user: register!): responseUser!
     test(user: testUser!): responseDelete!
 `;

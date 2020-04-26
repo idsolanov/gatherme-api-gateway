@@ -369,9 +369,17 @@ export async function deleteActivity(url){
 /*----------Requests----------*/
 //Queries
 export async function sentRequests (user) {
+	console.log(user)
 	let res = await axios.get(`${url}${req_ms_PORT}/${user.user}/${req_entrypoint}/sent`);
-	let ans = { result: res.data };
-	return ans;
+	console.log(res.data)
+	let aux = [ {
+		id: 343,
+		user_origin: "String!",
+		user_destination: "String!",
+		status: "String!",
+		send_date:" String!"
+	}]
+	return res.data;
 }
 
 export async function inboxRequests (user) {
@@ -393,8 +401,8 @@ export async function acceptRequest (body) {
 	if(auth) {
 		let origin = { user_origin: body.user_origin };
 		let res = await axios.put(`${url}${req_ms_PORT}/${body.user_destination}/${req_entrypoint}/accept`, origin);
-		addGatherToUser(`${body.user_origin}`, `${body.user_destination}`, body.token);
-		addGatherToUser(`${body.userDestination}`, `${body.userOrigin}`, body.token);
+		let u1 = await addGatherToUser(body.user_origin, body.user_destination, body.token);
+		let u2 = await addGatherToUser(body.user_destination, body.user_origin, body.token);
 		let ans = { result: res.data };
 		return ans;
 	}

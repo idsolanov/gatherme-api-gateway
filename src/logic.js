@@ -371,6 +371,11 @@ export async function getActivitiesByCategory(url){
 	return res.data;
 }
 
+export async function getActivitiesByLike(url){
+	let res = await axios.get(url);
+	return res.data;
+}
+
 
 /*----------Requests----------*/
 //Queries

@@ -6,7 +6,8 @@ import {getActivityByID,
        commentActivity,
        deleteActivity,
        addMember,
-       getActivitiesByCategory
+       getActivitiesByCategory,
+       getActivitiesByLike
     }from '../logic'
 
 const URL = `http://172.17.0.1:4000/gatherme-activities-ms/activities/activity`;
@@ -23,6 +24,10 @@ const activityResolvers = {
         },
         getActivitiesByCategory: (_, {category}) => {
             let response= getActivitiesByCategory(`${URL}/category/${category}`);
+            return response;
+        },
+        getActivitiesByLike: (_, {like}) => {
+            let response = getActivitiesByLike(`${URL}/like/${like}`);
             return response;
         }
     },

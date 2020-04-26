@@ -5,7 +5,7 @@ type Activity {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    tags_especificos : [String]
+    likes : [String]
     notas_adicionales : [String]
     categoria:  [String]
     reccurrente: Boolean!
@@ -34,7 +34,7 @@ input ActivityInput {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    tags_especificos : [String]
+    likes : [String]
     notas_adicionales : [String]
     categoria:  [String]
     reccurrente: Boolean!
@@ -50,7 +50,7 @@ input ActivityInputUpdate {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    tags_especificos : [String]
+    likes : [String]
     notas_adicionales : [String]
     categoria:  [String]
     reccurrente: Boolean!
@@ -67,7 +67,7 @@ input AdministratorInputUpdate {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    tags_especificos : [String]
+    likes : [String]
     notas_adicionales : [String]
     categoria:  String!
     reccurrente: Boolean!
@@ -95,7 +95,7 @@ export const activityQueries = `
     getActivityByID(id: Int!): Activity!
     getAllActivities: [Activity]
     getActivitiesByCategory(category: String!): [Activity]
- 
+    getActivitiesByLike(like: String!): [Activity]
 
 `
 ;

@@ -366,6 +366,12 @@ export async function deleteActivity(url){
 
 }
 
+export async function getActivitiesByCategory(url){
+	let res = await axios.get(url);
+	return res.data;
+}
+
+
 /*----------Requests----------*/
 //Queries
 export async function sentRequests (user) {

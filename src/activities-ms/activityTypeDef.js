@@ -7,7 +7,7 @@ type Activity {
     lista_miembros : [String]
     tags_especificos : [String]
     notas_adicionales : [String]
-    categoria:  String!
+    categoria:  [String]
     reccurrente: Boolean!
     lugar:  String!
     hora:  String!
@@ -36,7 +36,7 @@ input ActivityInput {
     lista_miembros : [String]
     tags_especificos : [String]
     notas_adicionales : [String]
-    categoria:  String!
+    categoria:  [String]
     reccurrente: Boolean!
     lugar:  String!
     hora:  String!
@@ -52,7 +52,7 @@ input ActivityInputUpdate {
     lista_miembros : [String]
     tags_especificos : [String]
     notas_adicionales : [String]
-    categoria:  String!
+    categoria:  [String]
     reccurrente: Boolean!
     lugar:  String!
     hora:  String!
@@ -94,6 +94,8 @@ input CommentInput {
 export const activityQueries = `
     getActivityByID(id: Int!): Activity!
     getAllActivities: [Activity]
+    getActivitiesByCategory(category: String!): [Activity]
+ 
 
 `
 ;

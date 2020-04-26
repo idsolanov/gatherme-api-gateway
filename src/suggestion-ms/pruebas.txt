@@ -54,6 +54,28 @@ mutation{
     }
   }){ans}
 }
+mutation {
+  createReport(reportInfo:{
+    report:{
+      commentary:"Sapo"
+    },
+    user:{
+      id: "11"
+    },
+    userReported: {
+      id: "12"
+    }
+  }){ans}
+}
+query{
+  reports{
+    id
+  }
+}
+query{
+  getSuggestion(id:"11"){suggestedUser{name}}
+}
+==========================================================
 
 /*
 	let ansC = await sugg_existCategory("body.category");

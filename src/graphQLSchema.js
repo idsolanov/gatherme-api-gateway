@@ -27,14 +27,17 @@ import {
 	sugg_likeTypeDef,
 	sugg_categoryTypeDef,
 	sugg_suggestionTypeDef,
+	sugg_reportTypeDef,
 	sugg_userQueries,
 	sugg_likeQueries,
 	sugg_categoryQueries,
 	sugg_suggestionQueries,
+	sugg_reportQueries,
 	sugg_userMutations,
 	sugg_likeMutations,
 	sugg_categoryMutations,
-	sugg_suggestionMutations
+	sugg_suggestionMutations,
+	sugg_reportMutations
 } from './suggestion-ms/typeDefs'
 
 import {
@@ -57,7 +60,8 @@ import {
 	sugg_userResolvers,
 	sugg_likeResolvers,
 	sugg_categoryResolvers,
-	sugg_suggestionResolvers
+	sugg_suggestionResolvers,
+	sugg_reportResolvers
 } from './suggestion-ms/resolvers'
 
 
@@ -73,7 +77,8 @@ const mergedTypeDefs = mergeSchemas(
 		sugg_userTypeDef,
 		sugg_likeTypeDef,
 		sugg_categoryTypeDef,
-		sugg_suggestionTypeDef
+		sugg_suggestionTypeDef,
+		sugg_reportTypeDef
 	],
 	[
 		userQueries,
@@ -83,7 +88,8 @@ const mergedTypeDefs = mergeSchemas(
 		sugg_userQueries,
 		sugg_likeQueries,
 		sugg_categoryQueries,
-		sugg_suggestionQueries
+		sugg_suggestionQueries,
+		sugg_reportQueries
 	],
 	[
 		userMutations,
@@ -94,7 +100,8 @@ const mergedTypeDefs = mergeSchemas(
 		sugg_userMutations,
 		sugg_likeMutations,
 		sugg_categoryMutations,
-		sugg_suggestionMutations
+		sugg_suggestionMutations,
+		sugg_reportMutations
 	]
 );
 
@@ -111,6 +118,7 @@ export default makeExecutableSchema({
 		sugg_userResolvers,
 		sugg_likeResolvers,
 		sugg_categoryResolvers,
-		sugg_suggestionResolvers
+		sugg_suggestionResolvers,
+		sugg_reportResolvers
 	)
 });

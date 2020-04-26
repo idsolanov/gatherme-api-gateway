@@ -428,11 +428,6 @@ export async function sugg_newUser(user) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewUser`, user);
 	return res.data;
 }
-/*
-export async function sugg_newReport(userInfo) {
-	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewReport`, userInfo);
-	return res.data;
-}*/
 export async function sugg_newGather(userInfo) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewGather`, userInfo);
 	return res.data;

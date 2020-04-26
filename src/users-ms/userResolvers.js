@@ -1,5 +1,5 @@
 import { getUserByID,getUserByUsername,updateUser, deleteUser, createUser} from '../logic';
-import { getLikeByID,updateLike,test, deleteLike, createLike, getLikesByCategory,register} from '../logic';
+import { getLikeByID,updateLike,test, deleteLike, createLike, getLikesByCategory,register, addLikeToUser} from '../logic';
 
 
 
@@ -45,8 +45,12 @@ const userResolvers = {
             let response = deleteUser(id)
             return response
         },
-        createLike: (_, { like }) =>{
-            let response = createLike(like)
+        createLike: (_, { like ,username,token}) =>{
+            let response = createLike(like,username,token)
+            return response;
+        },
+        addLikeToUser: (_, { like,username,token}) =>{
+            let response = addLikeToUser(like,username,token)
             return response;
         },
 			

@@ -3,7 +3,7 @@ const axios = require('axios');
 const url = "http://172.17.0.1:";
 const url_user = "3000/gatherme-users-ms";
 const auth_ms_PORT = '3001'
-const comu_ms_PORT = '3002/'
+const comu_ms_PORT = '3002'
 const sugg_ms_PORT = '80'
 const req_ms_PORT = '4444'
 const req_entrypoint = 'gatherme-requests'
@@ -39,9 +39,69 @@ export async function createUser(body) {
 
 }
 
-export async function createLike(body) {
-	let res = await axios.post(url + url_user + "/create-like", body);
-	return res.data;
+//Usar cuando el like ya exista
+export async function addLikeToUser(like, username,token) {
+	let auth = await Isauth(token);
+	if(auth){
+		
+		let user = await getUserByUsername(username);
+		user.likes.push(like);
+		let update = await updateUser(user);
+		let inputSugg ={
+			user:{
+				id: user.id
+			},
+			likes:[{name: like}]		
+		}
+		console.log(inputSugg)
+		let updateSugg = await sugg_newLike(inputSugg)
+		console.log(updateSugg)
+		return updateSugg;
+	}
+	else{
+		let error = {
+			error: "El usuario no esta autenticado"
+		}
+		return error;
+	}
+
+	
+
+}
+
+export async function createLike(body,username,token) {
+	let auth = await Isauth(token);
+	if(auth){
+		let sugg = {
+			name : body.name
+		}
+		let suggLike = await sugg_createLike(sugg)
+		console.log(suggLike)
+		let relationInput = {
+			like: {
+				name: body.name
+			},
+			category:{
+				name: body.category
+			}
+		}
+		let relationLike = await sugg_newIs(relationInput)
+		console.log(relationLike)
+		let res = await axios.post(url + url_user + "/create-like", body);
+		let adduser = await addLikeToUser(body.name,username,token)
+		console.log(adduser)
+	
+		return res.data;
+
+	}
+	else {
+		let error = {
+			error: "El usuario no esta autenticado"
+		}
+		return error;
+	}
+
+	
 
 }
 
@@ -93,22 +153,7 @@ export async function addComunityToUser(comunity, username, token) {
 
 }
 
-export async function addLikeToUser(like, username, token) {
-	let auth = await Isauth(token);
-	if (auth) {
-		let user = await getUserByUsername(username);
-		user.likes.push(like);
-		let update = await updateUser(user);
-		return update;
-	}
-	else {
-		let error = {
-			error: "El usuario no esta autenticado"
-		}
-		return error;
-	}
 
-}
 
 export async function addGatherToUser(gather, username, token) {
 	let auth = await Isauth(token);
@@ -222,8 +267,10 @@ export async function getMessagesbyChatId(chatId) {
 	return response.data
 }
 export async function createChat(chat) {
+	console.log(chat);
 	let response = await axios.post(url + comu_ms_PORT + `/chat`, chat)
-	return response.data
+	console.log(response.data);
+	return response.data.chatStrored
 }
 export async function deleteChat(id) {
 	let response = await axios.delete(url + comu_ms_PORT + `/chat/${id}`)
@@ -231,7 +278,8 @@ export async function deleteChat(id) {
 }
 export async function createMessage(message) {
 	let response = await axios.post(url + comu_ms_PORT + `/message`, message)
-	return response.data
+	console.log(response.data);
+	return response.data.messageStrored
 }
 export async function deleteMessage(id) {
 	let response = await axios.delte(url + comu_ms_PORT + `/message/${id}`)
@@ -478,11 +526,19 @@ export async function register(user) {
 		activities: user.activities,
 		gathers: user.gathers
 	}
+
 	let singupResponse = await singUp(account)
 	console.log("singUp successful");
 
 	if (singupResponse.email != null) {
 		let userResponse = await createUser(userBody)
+		let userSug ={
+			id:userResponse.id,
+			name: userResponse.username
+		}
+		let suggResponse = await sugg_newUser(userSug)
+		console.log(suggResponse)
+		userResponse.token = singupResponse.token;
 		console.log("Create user successful");
 		return userResponse
 	}

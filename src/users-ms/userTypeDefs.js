@@ -128,6 +128,7 @@ input testUser{
 export const userQueries = `
     userById(id: String!): User!
     userByUsername(username: String!): User!
+    userByEmail(email: String!): User!
     likeById(id: String!): Like!
     likesByCategory(category: String!):[Like!]
 `;

@@ -27,6 +27,13 @@ export async function getUserByUsername(username) {
 
 }
 
+export async function getUserByEmail(email) {
+	let res = await axios.get(url + url_user + "/user-email/" + email)
+	return res.data[0]
+
+}
+
+
 export async function getLikesByCategory(category) {
 	let res = await axios.get(url + url_user + "/like-category/" + category)
 	return res.data

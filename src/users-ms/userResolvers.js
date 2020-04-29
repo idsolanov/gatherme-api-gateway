@@ -1,4 +1,4 @@
-import { getUserByID,getUserByUsername,updateUser, deleteUser, createUser} from '../logic';
+import { getUserByID,getUserByUsername,updateUser, deleteUser, createUser,getUserByEmail} from '../logic';
 import { getLikeByID,updateLike,test, deleteLike, createLike, getLikesByCategory,register, addLikeToUser} from '../logic';
 
 
@@ -11,6 +11,10 @@ const userResolvers = {
         },
         userByUsername: (_, { username }) =>{
             let response = getUserByUsername(`${username}`)
+            return response;   
+        },
+        userByEmail: (_, { email }) =>{
+            let response = getUserByEmail(`${email}`)
             return response;   
         },
         likeById: (_, { id }) =>{

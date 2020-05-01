@@ -458,9 +458,13 @@ export async function sugg_newGather(userInfo) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewGather`, userInfo);
 	return res.data;
 }
-//Nueva relación LIKE con un nodo like
+//--->Nueva relación LIKE con un nodo like
 export async function sugg_newLike(userInfo) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/User/NewLike`, userInfo);
+	return res.data;
+}
+export async function sugg_usersLikes(id){
+	let res = await axios.get(`${url}${sugg_ms_PORT}/User/UsersLikes?id=${id}`);
 	return res.data;
 }
 //like
@@ -476,7 +480,7 @@ export async function sugg_existLike(name) {
 	let res = await axios.get(`${url}${sugg_ms_PORT}/Like/ExistLike?name=${name}`);
 	return res.data;
 }
-//Nuevo nodo Like
+//--->Nuevo nodo Like
 export async function sugg_createLike(like) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/Like/NewLike`, like);
 	return res.data;
@@ -496,6 +500,10 @@ export async function sugg_filterByCategory(name) {
 }
 export async function sugg_newCategory(category) {
 	let res = await axios.post(`${url}${sugg_ms_PORT}/Category/NewCategory`, category);
+	return res.data;
+}
+export async function sugg_likeByCategory(category){
+	let res = await axios.get(`${url}${sugg_ms_PORT}/Category/LikeByCategory?name=${category}`);
 	return res.data;
 }
 async function sugg_existCategory(name){

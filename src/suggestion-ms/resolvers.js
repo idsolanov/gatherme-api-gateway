@@ -1,10 +1,9 @@
 import {
-    sugg_getUsers, sugg_newUser, sugg_newGather, sugg_newLike,
+    sugg_getUsers, sugg_newUser, sugg_newGather, sugg_newLike, sugg_usersLikes,
     sugg_getLikes, sugg_filterByLike, sugg_existLike, sugg_createLike, sugg_newIs,
-    sugg_getCategories, sugg_filterByCategory, sugg_newCategory,
-    sugg_getSuggestions, sugg_getSuggestion,sugg_createSuggest, sugg_deactivate,sugg_getAllReports,sugg_newReport
+    sugg_getCategories, sugg_filterByCategory, sugg_newCategory, sugg_likeByCategory,
+    sugg_getSuggestions, sugg_getSuggestion, sugg_createSuggest, sugg_deactivate, sugg_getAllReports, sugg_newReport
 } from '../logic';
-const URL = `http://172.22.0.1:80`;
 
 const sugg_userResolvers = {
     Query: {
@@ -12,6 +11,10 @@ const sugg_userResolvers = {
             let response = sugg_getUsers()
             return response
         },
+        usersLikes: (_, { id }) => {
+            let response = sugg_usersLikes(id);
+            return response;
+        }
     },
     Mutation: {
         newUser: (_, { user }) => {
@@ -68,6 +71,10 @@ const sugg_categoryResolvers = {
         filterByCategory: (_, { name }) => {
             let response = sugg_filterByCategory(name);
             return response;
+        },
+        likeByCategory: (_, { name }) => {
+            let response = sugg_likeByCategory(name);
+            return response;
         }
     },
     Mutation: {
@@ -84,7 +91,7 @@ const sugg_suggestionResolvers = {
             let response = sugg_getSuggestions();
             return response;
         },
-        getSuggestion:  (_, {id}) => {
+        getSuggestion: (_, { id }) => {
             let response = sugg_getSuggestion(id);
             return response;
         }
@@ -110,11 +117,11 @@ const sugg_reportResolvers = {
         }
     },
     Mutation: {
-        createReport:  (_, {reportInfo}) => {
+        createReport: (_, { reportInfo }) => {
             let response = sugg_newReport(reportInfo);
             return response;
         }
     }
 }
 
-export { sugg_userResolvers, sugg_likeResolvers, sugg_categoryResolvers, sugg_suggestionResolvers,sugg_reportResolvers };
+export { sugg_userResolvers, sugg_likeResolvers, sugg_categoryResolvers, sugg_suggestionResolvers, sugg_reportResolvers };

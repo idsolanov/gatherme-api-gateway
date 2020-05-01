@@ -116,6 +116,7 @@ input sugg_reportInfoInput{
 /*==============================*/
 export const sugg_userQueries = `
     users: [sugg_User!]
+    usersLikes(id: String!): [sugg_Like]!
 `;
 export const sugg_likeQueries = `
     likes: [sugg_Like!]
@@ -125,6 +126,7 @@ export const sugg_likeQueries = `
 export const sugg_categoryQueries = `
     categories: [sugg_Category!]
     filterByCategory(name: String!): [sugg_User!]
+    likeByCategory(name: String!): [sugg_Like]!
 `;
 export const sugg_suggestionQueries = `
     suggestions: [sugg_Suggestion!]

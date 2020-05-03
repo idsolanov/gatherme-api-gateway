@@ -8,7 +8,7 @@ type Activity {
     likes : [String]
     notas_adicionales : [String]
     categoria:  [String]
-    reccurrente: Boolean!
+    recurrente: Boolean!
     lugar:  String!
     hora:  String!
     fecha:  String!
@@ -37,7 +37,7 @@ input ActivityInput {
     likes : [String]
     notas_adicionales : [String]
     categoria:  [String]
-    reccurrente: Boolean!
+    recurrente: Boolean!
     lugar:  String!
     hora:  String!
     fecha:  String!
@@ -53,7 +53,7 @@ input ActivityInputUpdate {
     likes : [String]
     notas_adicionales : [String]
     categoria:  [String]
-    reccurrente: Boolean!
+    recurrente: Boolean!
     lugar:  String!
     hora:  String!
     fecha:  String!
@@ -70,7 +70,7 @@ input AdministratorInputUpdate {
     likes : [String]
     notas_adicionales : [String]
     categoria:  String!
-    reccurrente: Boolean!
+    recurrente: Boolean!
     lugar:  String!
     hora:  String!
     fecha:  String!

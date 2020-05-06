@@ -402,8 +402,8 @@ export async function sentRequests (user) {
 
 export async function inboxRequests (user) {
 	let res = await axios.get(`${url}${req_ms_PORT}/${user.user}/${req_entrypoint}/inbox`);
-	let ans = { result: res.data };
-	return ans;
+	console.log(res.data);
+	return res.data;
 }
 
 //Mutations

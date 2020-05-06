@@ -30,7 +30,7 @@ input RequestGetInput {
 
 export const requestQueries = `
 	sentRequests(user: RequestGetInput): [Request]!
-	inboxRequests(user: RequestGetInput): [Request!]
+	inboxRequests(user: RequestGetInput): [Request]!
 `;
 
 

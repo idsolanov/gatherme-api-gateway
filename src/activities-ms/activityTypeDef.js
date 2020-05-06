@@ -5,7 +5,7 @@ type Activity {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    likes : [String]
+    tags_especificos : [String]
     notas_adicionales : [String]
     categoria:  [String]
     recurrente: Boolean!
@@ -34,7 +34,7 @@ input ActivityInput {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    likes : [String]
+    tags_especificos : [String]
     notas_adicionales : [String]
     categoria:  [String]
     recurrente: Boolean!
@@ -50,7 +50,7 @@ input ActivityInputUpdate {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    likes : [String]
+    tags_especificos : [String]
     notas_adicionales : [String]
     categoria:  [String]
     recurrente: Boolean!
@@ -67,7 +67,7 @@ input AdministratorInputUpdate {
     nombre:  String!
     descripcion:  String!
     lista_miembros : [String]
-    likes : [String]
+    tags_especificos : [String]
     notas_adicionales : [String]
     categoria:  String!
     recurrente: Boolean!

@@ -410,7 +410,7 @@ export async function inboxRequests (user) {
 export async function createRequest (body) {
 	let destination = {	user_destination: body.user_destination };
 	let res = await axios.post(`${url}${req_ms_PORT}/${body.user_origin}/${req_entrypoint}/create`, destination);
-	let ans = { result: res.data };
+	let ans = { result: res.statusText };
 	return ans;
 }
 
@@ -421,7 +421,7 @@ export async function acceptRequest (body) {
 		let res = await axios.put(`${url}${req_ms_PORT}/${body.user_destination}/${req_entrypoint}/accept`, origin);
 		let u1 = await addGatherToUser(body.user_origin, body.user_destination, body.token);
 		let u2 = await addGatherToUser(body.user_destination, body.user_origin, body.token);
-		let ans = { result: res.data };
+		let ans = { result: res.statusText };
 		return ans;
 	}
 	else {
@@ -433,14 +433,14 @@ export async function acceptRequest (body) {
 export async function rejectRequest (body) {
 	let origin = { user_origin: body.user_origin };
 	let res = await axios.put(`${url}${req_ms_PORT}/${body.user_destination}/${req_entrypoint}/reject`, origin);
-	let ans = { result: res.data };
+	let ans = { result: res.statusText };
 	return ans;
 }
 
 export async function eraseRequest (body) {
 	let destination = { user_destination: body.user_destination };
 	let res = await axios.delete(`${url}${req_ms_PORT}/${body.user_origin}/${req_entrypoint}/delete`, destination);
-	let ans = { result: res.data };
+	let ans = { result: res.statusText };
 	return ans;
 }
 

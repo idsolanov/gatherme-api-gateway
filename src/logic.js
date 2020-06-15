@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const url = "http://172.17.0.1:";
+const url = "http://192.168.99.114:";
 const url_user = "3000/gatherme-users-ms";
 const auth_ms_PORT = '3001'
 const comu_ms_PORT = '3002'
